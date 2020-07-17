@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300&family=Permanent+Marker&display=swap" rel="stylesheet">
+  </head>
+  <body>
+    <div id="main">
+        <div id="contenu">
+            <h1><%= title %></h1>
+            <div>
+            <form action="/newProduct" method="POST">
+                <div><input type="text" name="name" placeholder="Nom" value=""></div>
+                <div><input type="text" name="urlImage" placeholder="URL de l'image" value=""></div>
+                <div><input type="text" name="price" placeholder="Prix" value=""></div>      
+                <div><input type="hidden" name="stock"  value="3"></div>  
+                <button>De nouveaux produits sont arrivĂ©s en stock !</button>
+            </form>
+            </div>
+        </div>
+    </div>
+  </body>
+</html>
