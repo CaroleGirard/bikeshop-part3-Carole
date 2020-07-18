@@ -11,7 +11,19 @@ router.get('/', async function(req, res, next) {
 
 var articleCde = [];
 router.get('/cart', function(req, res, next) {
-  articleCde.push({name: req.query.name, urlImage: req.query.urlImage, price: req.query.price, qteProduit: 1 })
+  var checkRef= false;
+  console.log("coucou")
+  for (var i= 0; i<articleCde.length; i++) {
+    console.log("c'est encore moi")
+    if (articleCde[i].name == req.query.name) {
+      articleCde[i].qteProduit ++;
+      checkRef= true;
+
+    } 
+  }
+  if (checkRef== false){
+  articleCde.push({name: req.query.name, urlImage: req.query.urlImage, price: req.query.price, qteProduit: 1 }) 
+  }
   res.render('cart', { articleCde});
 });
 
@@ -53,16 +65,16 @@ router.post('/newProduct', async function(req, res, next){
 })
 // Nouvelle commande
 
-router.get('/commande', async function(req, res, next) {
-var newCommande = new data.ProductModel ({
-    qteProduit: req.query.qteProduit,
-    products: [{name: req.query.name, urlImage: req.query.urlImage, price: req.query.price}]
+router.get('/save-commande', async function(req, res, next) {
+var newCommande = new data.commandeModel ({
+    products: articleCde,
+    IDClient: "qwerty"
   });
 
 var Commande = await newCommande.save();
 
   
-  res.render('cart', {qteProduit: req.query.qteProduit, products:[{name: req.query.name, urlImage: req.query.urlImage, price: req.query.price}]});
+  res.render('confirm');
 });
 //var totalCmd = await data.commandeModel.find();
 module.exports = router;

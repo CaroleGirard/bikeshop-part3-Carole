@@ -16,6 +16,7 @@ var options = {
     name: String,
     urlImage: String,
     price: Number,
+    qteProduit: Number,
     stock: Number
    });
 
@@ -25,11 +26,11 @@ var options = {
     qteProduit: Number,
     products: [productSchema],
     fdP: Number,
-    adresseEpxedition: String,
+    adresseExpedition: String,
     CPExpedition: String,
     villeExpedition: String    
    });
    var ProductModel = mongoose.model('products', productSchema);
-   //var commandeModel = mongoose.model('commande', commandeSchema);
+   var commandeModel = mongoose.model('commande', commandeSchema);
 
-   module.exports = {ProductModel/*,commandeModel*/};
+   module.exports = {ProductModel,commandeModel};
